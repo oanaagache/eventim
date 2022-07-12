@@ -1,0 +1,28 @@
+.response {
+  text-align: center;
+}
+
+.title {
+  padding: 0 10px 0 10px;
+}
+
+.button {
+  display: flex;
+}
+.back {
+  color: black;
+  width: 200px;
+  height: 50px;
+  background-color: aliceblue;
+  margin: 20px 20px 20px 80px;
+  font-size: 15px;
+  text-align: center;
+
+  padding: 0.2rem;
+  margin: 0.1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #404040 solid;
+  background-color: #f0c040;
+
+  cursor: pointer;
+}
