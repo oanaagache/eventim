@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { deleteEvent, updateEvent } from "./AddEvent";
-//import { useNavigate } from "react-router-dom";
 
 const Event = (props) => {
   const { name, hour, date, title, place, description, id, price, quantity } =
@@ -10,7 +10,8 @@ const Event = (props) => {
   const style = {
     borderBottom: "1px solid #777",
   };
-  // let navigate = useNavigate();
+
+  let navigate = useNavigate();
 
   return (
     <Container>
@@ -34,7 +35,7 @@ const Event = (props) => {
           >
             Delete Event
           </Button>
-          {/* <Button
+          <Button
             variant="primary"
             onClick={(e) => {
               updateEvent(id, {
@@ -47,14 +48,30 @@ const Event = (props) => {
                 price: "price",
                 quantity: "quantity",
               });
+              console.log(id);
+              console.log(name);
+              navigate(`/AddEvent/${id}`);
             }}
-            onClick={() => navigate(`/AddEvent/${id}`)}
           >
             Edit Event
-          </Button> */}
+          </Button>
         </Col>
       </Row>
     </Container>
   );
 };
 export default Event;
+
+// onClick={(e) => {
+//   updateEvent(id, {
+//     name: "name",
+//     hour: "hour",
+//     date: "date",
+//     title: "title",
+//     place: "place",
+//     description: "description",
+//     price: "price",
+//     quantity: "quantity",
+//   });
+
+//onClick={() => navigate(`/AddEvent/${id}`)}

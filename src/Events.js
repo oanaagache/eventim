@@ -2,7 +2,7 @@ import React from "react";
 import Event from "./Event";
 
 const Events = (props) => {
-  const { events, deleteEvent } = props;
+  const { events, deleteEvent, updateEvent } = props;
   const list = events.map((item) => (
     <Event
       name={item.name}
@@ -16,6 +16,7 @@ const Events = (props) => {
       id={item.id}
       key={item.id}
       deleteEvent={deleteEvent}
+      updateEvent={updateEvent}
     />
   ));
 

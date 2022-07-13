@@ -15,7 +15,7 @@ const Welcome = () => {
       </div>
 
       <button className="back" onClick={() => navigate("/Main")}>
-        Go To Shopping Page{" "}
+        Back
       </button>
     </div>
   );

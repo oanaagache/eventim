@@ -9,14 +9,14 @@ import Navi from "./Navi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import app from "./firebase";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc } from "firebase/firestore";
 import BarChart from "./charts/BarChart";
 import LineChart from "./charts/LineChart";
 import PieChart from "./charts/PieChart";
-//import { UserData } from "./charts/Data";
 import Reports from "./Reports";
 import Success from "./Success";
 import Welcome from "./Welcome";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [list, setList] = useState([]);
@@ -25,19 +25,9 @@ const App = () => {
     event.id = list.length + 1;
     setList([...list, event]);
   };
-
-  // const deleteEvent = (id) => {
-  //   const newList = list.filter((item) => {
-  //     if (item.id !== parseInt(id, 10)) {
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //   setList([...newList]);
-  // };
+  let navigate = useNavigate();
 
   const db = getFirestore(app);
-
   const getList = async () => {
     const list = await getDocs(collection(db, "event"));
     let listaNoua = list.docs.map((doc) => {
@@ -53,7 +43,6 @@ const App = () => {
   }, []);
 
   const [cartItems, setCartItems] = useState([]);
-
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -66,6 +55,7 @@ const App = () => {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
   };
+
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.qty === 1) {
@@ -79,17 +69,59 @@ const App = () => {
     }
   };
 
+  const [edit, setEdit] = useState({
+    id: 0,
+    name: "",
+    hour: "",
+    date: "",
+    title: "",
+    place: "",
+    description: "",
+    price: "",
+    quantity: "",
+  });
+
+  const editEvent = (id) => {
+    var object = list.find((item) => {
+      return parseInt(item.id, 10) === parseInt(id, 10);
+    });
+
+    if (object) {
+      setEdit({
+        id: object.id,
+        name: object.name,
+        hour: object.hour,
+        date: object.date,
+        title: object.title,
+        place: object.place,
+        description: object.description,
+        price: object.price,
+        quantity: object.quantity,
+      });
+      navigate("/AddEvent");
+    }
+  };
+
   return (
     <>
       <div>
         <Navi countCartItems={cartItems.length} />
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/AddEvent" element={<AddEvent send={addEvent} />} />
-
+          {/* <Route
+            path="/AddEvent"
+            element={<AddEvent add={addEvent} objectedit={edit} />}
+          /> */}
+          <Route
+            path="/AddEvent/:id"
+            element={<AddEvent add={addEvent} objectedit={edit} />}
+          />
           <Route path="/ticket" element={<Ticket />} />
 
-          <Route path="/events" element={<Events events={list} />} />
+          <Route
+            path="/events"
+            element={<Events events={list} updateEvent={editEvent} />}
+          />
           <Route
             path="/Main"
             element={
@@ -117,20 +149,3 @@ const App = () => {
 };
 
 export default App;
-
-// rules_version = '2';
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /{document=**} {
-//       allow read, write: if request.time < timestamp.date(2022, 6, 6);
-//     }
-//   }
-// }
-// rules_version = '2';
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /{document=**} {
-//       allow read, write: if true;
-//     }
-//   }
-// }

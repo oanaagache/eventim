@@ -15,7 +15,7 @@ const Success = () => {
           navigate("/main");
         }}
       >
-        Back to Shopping page
+        Back
       </button>
     </div>
   );

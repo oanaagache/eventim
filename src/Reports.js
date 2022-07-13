@@ -11,31 +11,44 @@ const Reports = (props) => {
     labels: list.map((item) => item.name),
     datasets: [
       {
-        label: "Tickets Sold",
-        data: list.map((item) => item.quantity),
+        label: "Band Name",
+        data: list.map((item) => 500 - item.quantity),
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
+          "#ADD8E6",
+          "#FFB6C1",
+          "#6495ED",
+          "#FF7F50",
+          "#00BFFF",
+          "#DAA520",
+          "#008000",
+          "#CD5C5C",
+          "#20B2AA",
+          "#FFF0F5",
+          "#FF8C00",
+          "#66CDAA",
+          "#66CDAA",
         ],
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   });
 
   return (
-    <div className="App">
-      <div style={{ width: 700 }}>
-        <BarChart chartData={userData} />
+    <div className="row">
+      <div className="block1 col-2">
+        <div style={{ width: 800 }}>
+          <h2 style={{ paddingBottom: 150 }}>Reports Tickets Sold:</h2>
+          <BarChart chartData={userData} />
+        </div>
       </div>
-      <div style={{ width: 700 }}>
-        <LineChart chartData={userData} />
-      </div>
-      <div style={{ width: 700 }}>
-        <PieChart chartData={userData} />
+      <div className="block2 col-2">
+        <div style={{ width: 800 }}>
+          <h2 style={({ paddingBottom: 30 }, { paddingLeft: 30 })}>
+            Reports Tickets Sold:{" "}
+          </h2>
+          <PieChart chartData={userData} />
+        </div>
       </div>
     </div>
   );
