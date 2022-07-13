@@ -108,10 +108,10 @@ const App = () => {
         <Navi countCartItems={cartItems.length} />
         <Routes>
           <Route path="/" element={<Welcome />} />
-          {/* <Route
+          <Route
             path="/AddEvent"
             element={<AddEvent add={addEvent} objectedit={edit} />}
-          /> */}
+          />
           <Route
             path="/AddEvent/:id"
             element={<AddEvent add={addEvent} objectedit={edit} />}

@@ -101,7 +101,7 @@ const AddEvent = (props) => {
     };
 
     if (id > 0) {
-      props.editEvent(event);
+      props.updateEvent(event);
     } else {
       props.add(event);
     }

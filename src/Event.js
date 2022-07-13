@@ -48,8 +48,7 @@ const Event = (props) => {
                 price: "price",
                 quantity: "quantity",
               });
-              console.log(id);
-              console.log(name);
+
               navigate(`/AddEvent/${id}`);
             }}
           >
@@ -61,17 +60,3 @@ const Event = (props) => {
   );
 };
 export default Event;
-
-// onClick={(e) => {
-//   updateEvent(id, {
-//     name: "name",
-//     hour: "hour",
-//     date: "date",
-//     title: "title",
-//     place: "place",
-//     description: "description",
-//     price: "price",
-//     quantity: "quantity",
-//   });
-
-//onClick={() => navigate(`/AddEvent/${id}`)}
