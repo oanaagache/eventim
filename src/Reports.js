@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import BarChart from "./charts/BarChart";
 import LineChart from "./charts/LineChart";
 import PieChart from "./charts/PieChart";
-import { updateTickets } from "./AddEvent";
-//import { useParams } from "react-router-dom";
 
 const Reports = (props) => {
   const { list } = props;
@@ -13,6 +11,7 @@ const Reports = (props) => {
       {
         label: "Band Name",
         data: list.map((item) => 500 - item.quantity),
+
         backgroundColor: [
           "#ADD8E6",
           "#FFB6C1",
@@ -50,6 +49,14 @@ const Reports = (props) => {
           <PieChart chartData={userData} />
         </div>
       </div>
+      {/* <div>
+        <div style={{ width: 800 }}>
+          <h2 style={({ paddingBottom: 30 }, { paddingLeft: 30 })}>
+            Reports Tickets Sold:{" "}
+          </h2>
+          <LineChart chartData={userData} />
+        </div>
+      </div> */}
     </div>
   );
 };

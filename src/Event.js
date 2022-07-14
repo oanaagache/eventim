@@ -39,14 +39,15 @@ const Event = (props) => {
             variant="primary"
             onClick={(e) => {
               updateEvent(id, {
-                name: "name",
-                hour: "hour",
-                date: "date",
-                title: "title",
-                place: "place",
-                description: "description",
-                price: "price",
-                quantity: "quantity",
+                title: "Concert",
+                name: "Coma",
+                hour: "20",
+                date: "10.07.2022",
+                place: "Sala 1",
+                description:
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                price: "100",
+                quantity: "500",
               });
 
               navigate(`/AddEvent/${id}`);

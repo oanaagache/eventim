@@ -28,7 +28,7 @@ export const updateTickets = (event, ticketsQuantity) => {
   console.log(data);
   setDoc(docRef, data)
     .then((docRef) => {
-      console.log("Entire Document has been updated successfully");
+      console.log("The Document has been updated successfully");
     })
     .catch((error) => {
       console.log(error);
@@ -38,17 +38,19 @@ export const updateTickets = (event, ticketsQuantity) => {
 export const deleteEvent = async (id) => {
   const db = getFirestore(app);
   await deleteDoc(doc(db, "event", id));
-  console.log("Entire Document has been deleted successfully");
+  console.log("The Document has been deleted successfully");
 };
 
 export const updateEvent = (id, object) => {
   const db = getFirestore(app);
   const docRef = doc(db, "event", id);
+
   console.log("object:");
   console.log(object);
-  setDoc(docRef, object)
+
+  setDoc(docRef, object, { merge: true })
     .then((docRef) => {
-      console.log("Entire Document has been updated successfully");
+      console.log("The Document has been updated successfully");
     })
     .catch((error) => {
       console.log(error);
@@ -106,14 +108,14 @@ const AddEvent = (props) => {
       props.add(event);
     }
 
-    // setName("");
-    // setHour("");
-    // setDate("");
-    // setTitle("");
-    // setPlace("");
-    // setDescription("");
-    // setPrice("");
-    // setQuantity("");
+    setName("");
+    setHour("");
+    setDate("");
+    setTitle("");
+    setPlace("");
+    setDescription("");
+    setPrice("");
+    setQuantity("");
 
     const db = getFirestore(app);
     addDoc(collection(db, "event"), {
