@@ -16,20 +16,21 @@ const Events = (props) => {
       id={item.id}
       key={item.id}
       deleteEvent={deleteEvent}
-      updateEvent={updateEvent}
+      editEvent={props.editEvent}
     />
   ));
 
-  const stil = {
+  const style = {
     h2: { textAlign: "center" },
   };
 
   return (
     <>
-      <h2 className="mt-4" style={stil.h2}>
+      <h2 className="mt-4" style={style.h2}>
         List of Events
       </h2>
-      <hr />
+      <hr></hr>
+
       <div>{list}</div>
     </>
   );

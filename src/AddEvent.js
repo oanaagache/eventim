@@ -10,7 +10,6 @@ import {
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { useParams } from "react-router-dom";
 
 export const updateTickets = (event, ticketsQuantity) => {
   const db = getFirestore(app);
@@ -25,7 +24,7 @@ export const updateTickets = (event, ticketsQuantity) => {
     price: event.price,
     quantity: ticketsQuantity,
   };
-  console.log(data);
+
   setDoc(docRef, data)
     .then((docRef) => {
       console.log("The Document has been updated successfully");
@@ -41,32 +40,7 @@ export const deleteEvent = async (id) => {
   console.log("The Document has been deleted successfully");
 };
 
-export const updateEvent = (id, object) => {
-  const db = getFirestore(app);
-  const docRef = doc(db, "event", id);
-
-  console.log("object:");
-  console.log(object);
-
-  setDoc(docRef, object, { merge: true })
-    .then((docRef) => {
-      console.log("The Document has been updated successfully");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
 const AddEvent = (props) => {
-  // const [name, setName] = useState("");
-  // const [hour, setHour] = useState("");
-  // const [date, setDate] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [place, setPlace] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [quantity, setQuantity] = useState("");
-
   let navigate = useNavigate();
 
   const style = {
@@ -77,6 +51,7 @@ const AddEvent = (props) => {
     h2: { textAlign: "center" },
   };
 
+  const [id, setId] = useState(props.objectedit.id);
   const [name, setName] = useState(props.objectedit.name);
   const [hour, setHour] = useState(props.objectedit.hour);
   const [date, setDate] = useState(props.objectedit.date);
@@ -85,8 +60,6 @@ const AddEvent = (props) => {
   const [description, setDescription] = useState(props.objectedit.description);
   const [price, setPrice] = useState(props.objectedit.price);
   const [quantity, setQuantity] = useState(props.objectedit.quantity);
-
-  const { id } = useParams();
 
   const formSubmit = (evt) => {
     evt.preventDefault();
@@ -102,12 +75,42 @@ const AddEvent = (props) => {
       quantity,
     };
 
-    if (id > 0) {
-      props.updateEvent(event);
+    if (id != 0) {
+      const updateEventDB = (id, object) => {
+        const db = getFirestore(app);
+        const docRef = doc(db, "event", id);
+
+        setDoc(docRef, object, { merge: true })
+          .then((docRef) => {
+            console.log("The Document has been updated successfully");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+
+      updateEventDB(id, event);
     } else {
-      props.add(event);
+      const db = getFirestore(app);
+      addDoc(collection(db, "event"), {
+        name: name,
+        hour: hour,
+        date: date,
+        title: title,
+        place: place,
+        description: description,
+        price: price,
+        quantity: quantity,
+      })
+        .then(() => {
+          alert("The event was added");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     }
 
+    setId(0);
     setName("");
     setHour("");
     setDate("");
@@ -116,24 +119,6 @@ const AddEvent = (props) => {
     setDescription("");
     setPrice("");
     setQuantity("");
-
-    const db = getFirestore(app);
-    addDoc(collection(db, "event"), {
-      name: name,
-      hour: hour,
-      date: date,
-      title: title,
-      place: place,
-      description: description,
-      price: price,
-      quantity: quantity,
-    })
-      .then(() => {
-        alert("The event was added");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
   };
 
   return (

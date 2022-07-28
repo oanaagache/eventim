@@ -120,7 +120,7 @@ const App = () => {
 
           <Route
             path="/events"
-            element={<Events events={list} updateEvent={editEvent} />}
+            element={<Events events={list} editEvent={editEvent} />}
           />
           <Route
             path="/Main"
@@ -140,7 +140,7 @@ const App = () => {
           <Route path="/Reports" element={<Reports list={list} />} />
           <Route path="/BarChart" element={<BarChart />} />
           <Route path="/LineChart" element={<LineChart />} />
-          <Route path="/PieChart" element={<PieChart />} />
+          {/* <Route path="/PieChart" element={<PieChart />} /> */}
           <Route path="/Success" element={<Success />} />
         </Routes>
       </div>

@@ -9,7 +9,7 @@ const Welcome = () => {
     <div className="response">
       <div>
         <h1 className="title" style={{ fontStyle: "bold" }}>
-          Welcome To Your Shop
+          Welcome To Your Shop!
         </h1>
         <img style={{ padding: "30px" }} src={logo} />
       </div>

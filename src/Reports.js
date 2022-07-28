@@ -36,27 +36,19 @@ const Reports = (props) => {
   return (
     <div className="row">
       <div className="block1 col-2">
-        <div style={{ width: 800 }}>
+        <div style={{ width: 700 }}>
           <h2 style={{ paddingBottom: 150 }}>Reports Tickets Sold:</h2>
           <BarChart chartData={userData} />
         </div>
       </div>
       <div className="block2 col-2">
-        <div style={{ width: 800 }}>
+        <div style={{ width: 700 }}>
           <h2 style={({ paddingBottom: 30 }, { paddingLeft: 30 })}>
             Reports Tickets Sold:{" "}
           </h2>
           <PieChart chartData={userData} />
         </div>
       </div>
-      {/* <div>
-        <div style={{ width: 800 }}>
-          <h2 style={({ paddingBottom: 30 }, { paddingLeft: 30 })}>
-            Reports Tickets Sold:{" "}
-          </h2>
-          <LineChart chartData={userData} />
-        </div>
-      </div> */}
     </div>
   );
 };

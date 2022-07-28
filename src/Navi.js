@@ -10,7 +10,7 @@ const Navi = (props) => {
         <ul className="header-menu">
           <li>
             <Link to="/">
-              <span className="about-nav">Eventim Shop</span>
+              <span className="about-nav">Event Shop</span>
             </Link>
           </li>
           <li>

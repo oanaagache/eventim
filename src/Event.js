@@ -2,13 +2,31 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteEvent, updateEvent } from "./AddEvent";
+import { BsTrashFill } from "react-icons/bs";
+import { BsPencilSquare } from "react-icons/bs";
 
 const Event = (props) => {
-  const { name, hour, date, title, place, description, id, price, quantity } =
-    props;
+  const {
+    name,
+    hour,
+    date,
+    title,
+    place,
+    description,
+    id,
+    price,
+    quantity,
+    editEvent,
+  } = props;
 
   const style = {
     borderBottom: "1px solid #777",
+  };
+
+  const stil = {
+    svg: {
+      pointerEvents: "none",
+    },
   };
 
   let navigate = useNavigate();
@@ -28,32 +46,35 @@ const Event = (props) => {
         </Col>
         <Col sm={3} className="d-flex align-items-center">
           <Button
-            variant="primary"
+            variant="link"
             onClick={(e) => {
               deleteEvent(id);
             }}
+            style={stil}
           >
-            Delete Event
+            <BsTrashFill />
           </Button>
           <Button
-            variant="primary"
+            variant="link"
             onClick={(e) => {
-              updateEvent(id, {
-                title: "Concert",
-                name: "Coma",
-                hour: "20",
-                date: "10.07.2022",
-                place: "Sala 1",
-                description:
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-                price: "100",
-                quantity: "500",
-              });
+              // updateEvent(id, {
+              //   title: "Concert",
+              //   name: "Andra",
+              //   hour: "20",
+              //   date: "10.08.2022",
+              //   place: "Sala Palatului",
+              //   description:
+              //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+              //   price: "100",
+              //   quantity: "494",
+              // });
 
-              navigate(`/AddEvent/${id}`);
+              editEvent(id);
+              navigate("/AddEvent");
             }}
+            style={stil}
           >
-            Edit Event
+            <BsPencilSquare />
           </Button>
         </Col>
       </Row>

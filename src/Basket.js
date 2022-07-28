@@ -13,8 +13,6 @@ const Basket = (props) => {
     cartItems.forEach((element) => {
       var event = eventList.find((y) => y.id === element.id);
       var ticketsQuantity = event.quantity - element.qty;
-      var sold = event.quantity - ticketsQuantity;
-
       updateTickets(event, ticketsQuantity);
     });
   };
@@ -22,7 +20,7 @@ const Basket = (props) => {
 
   return (
     <aside className="block2 col-3">
-      <h2>Cart Items:</h2>
+      <h2 style={{ fontStyle: "bold" }}>Cart Items:</h2>
       <div>
         {cartItems.length === 0 && (
           <div>
@@ -30,8 +28,9 @@ const Basket = (props) => {
             <h2 style={({ paddingTop: "80px" }, { paddingLeft: "50px" })}>
               Looks like you have not added anything to your cart yet.
             </h2>
+            <br></br>
             <h2 style={({ paddingTop: "80px" }, { paddingLeft: "50px" })}>
-              Add Tickets To Cart.
+              Add Tickets To Your Cart.
             </h2>
           </div>
         )}
@@ -55,7 +54,6 @@ const Basket = (props) => {
 
         {cartItems.length !== 0 && (
           <>
-            <hr></hr>
             <div className="row">
               <div className="col-3">Tickets Price</div>
               <div className="col-3 text-right">{itemsPrice.toFixed(2)}</div>
@@ -65,7 +63,6 @@ const Basket = (props) => {
               <div className="col-3 text-right">{taxPrice.toFixed(2)}</div>
             </div>
 
-            <hr></hr>
             <div className="row">
               <div className="col-3">
                 <strong>Total Price</strong>
